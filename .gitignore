@@ -1,0 +1,9 @@
+# Development utils
+venv/
+.vscode/
+.idea/
+
+# Optimized bytecode files
+__pycache__/
+*.py[cod]
+
