@@ -1,21 +1,28 @@
-"""config URL Configuration
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/3.0/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+from config.doc_generator import schema_view, token_schema_decor
+from user_api.views.user_views import UserViewSet
+from user_api.views.user_token_refresh import refresh_auth_token
+from user_api.views.me_endpoint import MeApiView
+from rest_framework.routers import DefaultRouter
+from rest_framework.authtoken.views import obtain_auth_token
+
+router = DefaultRouter()
+router.register("users", UserViewSet, basename="User")
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
+    path("admin/", admin.site.urls),  # in-built adminsite
+    path("swagger/", schema_view.with_ui("swagger", cache_timeout=0), name="api-doc",),
+    path(
+        "v1/",
+        include(
+            [
+                # Paths are resolved in-order, place any non-router paths here above
+                path("api-token-auth/", token_schema_decor(obtain_auth_token)),
+                path("api-token-refresh/", token_schema_decor(refresh_auth_token)),
+                path("users/me/", MeApiView.as_view()),
+                path("", include(router.urls)),
+            ]
+        ),
+    ),
 ]

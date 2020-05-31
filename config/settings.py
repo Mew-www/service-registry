@@ -26,6 +26,8 @@ env = environ.Env(
     POSTGRES_DB=str,
     POSTGRES_HOST=str,
     POSTGRES_PORT=str,
+    # MANUAL ACCOUNT CREATION -FLAG
+    ADMIN_ONLY_USERAPI=(bool, False),
 )
 # Read .env file if exists, use it to override any user/system environment variables
 environ.Env.read_env(BASE_DIR + "/.env")  # Unfortunate OS-specific path
@@ -43,6 +45,7 @@ DEBUG = env("DJANGO_DEBUG")
 ##
 # APPLICATION DEFINITION
 ##
+ADMIN_ONLY_USERAPI = env("ADMIN_ONLY_USERAPI")
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
