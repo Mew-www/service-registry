@@ -4,7 +4,7 @@ from rest_framework import viewsets, permissions
 from django.conf import settings
 
 from ..permissions import IsThisUserOrAdministrator
-from ..serializers import UserSerializer, UserModel
+from ..serializers.user import UserSerializer, UserModel
 
 
 @method_decorator(
