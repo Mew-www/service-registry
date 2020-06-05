@@ -14,7 +14,7 @@ class CustomSchemaGenerator(OpenAPISchemaGenerator):
         return openapi.Paths(
             {
                 p: paths[p]
-                for x in ["api-token-auth", "api-token-refresh", "users"]
+                for x in ["api-token-auth", "api-token-refresh", "users", "services"]
                 for p in list(paths.keys())
                 if p.startswith(x, 1)
             }
