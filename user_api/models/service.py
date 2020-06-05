@@ -10,6 +10,8 @@ class Service(models.Model):
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     user = models.ForeignKey(UserModel, on_delete=models.CASCADE)
-    endpoint_url = models.CharField(max_length=255, blank=False, null=False)
+    endpoint_url = models.CharField(
+        max_length=255, blank=False, null=False, unique=True
+    )
     name = models.CharField(max_length=255, blank=True, null=True)
     description_url = models.CharField(max_length=255, blank=True, null=True)
