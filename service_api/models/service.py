@@ -11,17 +11,23 @@ class Service(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     user = models.ForeignKey(UserModel, on_delete=models.CASCADE)
     endpoint_url = models.CharField(
-        # unique so that no two service entries forward to same address
+        # required so that service always forwards to an address
         max_length=255,
         blank=False,
         null=False,
-        unique=True,
     )
     name = models.CharField(
-        # unique so that name lookup is guaranteed to work
+        # required so that name lookup is guaranteed to work
         max_length=255,
         blank=False,
         null=False,
-        unique=True,
     )
     description_url = models.CharField(max_length=255, blank=True, null=True)
+
+    class Meta:
+        unique_together = (
+            # ensure that no two services (of a user) would forward to same address
+            ("user", "endpoint_url"),
+            # ensure that name lookup always matches to same service
+            ("user", "name"),
+        )
