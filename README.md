@@ -16,7 +16,7 @@ Supported features:
   - _Leaves implementation details up to the user - be it a dedicated Load Balancer endpoint, or a set of endpoints using separate names via multiple registrations._  
 - Service discovery
   - Capability to list services, endpoints, and metadata (of authenticated identity).  
-  - Capability to get service endpoint by service name (of authenticated identity). (**TBD**)  
+  - Capability to get service endpoint by service name (of authenticated identity).
 - OpenAPI live documentation  
 
 # Installation notes  
