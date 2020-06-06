@@ -8,15 +8,16 @@ A minimalistic Service Registry.
 Supported features:  
 - Multi-user registry
   - Capability to create a user via username/password. (Optionally disabled on server start for administrative-only use.)  
-  - 1 user identity = 1 admin token  
-  - _**Access to list means additionally (administrative) access to create/delete & edit user data, and vice versa**. There' no "limited scope" access tokens - these could be added at a later time e.g. in form of JWT._  
+  - _1 user identity = 1 (resettable) admin token. There' no "limited scope" access tokens - these could be added at a later time e.g. in form of JWT._  
 - Service registration 
-  - Capability to register a single endpoint per service name (for authenticated identity).  
-  - Capability to override any existing endpoint by "create_or_update" type of call (using HTTP POST/PUT verbs).  
+  - Capability to register new endpoint (for authenticated user).  
+  - Capability to override existing endpoint (for authenticated user).
+  - Capability to delete existing endpoint (for authenticated user).  
   - _Leaves implementation details up to the user - be it a dedicated Load Balancer endpoint, or a set of endpoints using separate names via multiple registrations._  
 - Service discovery
-  - Capability to list services, endpoints, and metadata (of authenticated identity).  
-  - Capability to get service endpoint by service name (of authenticated identity).
+  - Capability to list services, endpoints, and metadata (for authenticated user).  
+  - Capability to get service endpoint by id (for authenticated user).  
+  - Capability to get service endpoint by name (for authenticated user).  
 - OpenAPI live documentation  
 
 # Installation notes  
