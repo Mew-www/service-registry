@@ -2,9 +2,9 @@ from django.contrib import admin
 from django.urls import path, include
 from config.doc_generator import schema_view, token_schema_decor
 from user_api.views.user_views import UserViewSet
-from user_api.views.service_views import ServiceViewSet
 from user_api.views.user_token_refresh import refresh_auth_token
 from user_api.views.me_endpoint import MeApiView
+from service_api.views.service_views import ServiceViewSet
 from rest_framework.routers import DefaultRouter
 from rest_framework.authtoken.views import obtain_auth_token
 

@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     "rest_framework.authtoken",
     "drf_yasg",
     "user_api",
+    "service_api",
     # No cacheops, but something to look into in future (automatic Model-specific database request caching)
 ]
 MIDDLEWARE = [
