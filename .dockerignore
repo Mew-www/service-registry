@@ -1,0 +1,26 @@
+##
+# Gitignored files
+##
+
+# Development utils
+venv/
+.vscode/
+.idea/
+db-data/
+
+# Optimized bytecode files
+__pycache__/
+*.py[cod]
+
+# Locally used secrets
+.env
+
+##
+# Non-gitignored continues
+##
+
+# Build/configuration files
+.gitignore
+Dockerfile
+.dockerignore
+docker-compose.yml
